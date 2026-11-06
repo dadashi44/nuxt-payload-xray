@@ -24,7 +24,7 @@
     "cli"
   ],
   "bin": {
-    "nuxt-payload-xray": "./dist/cli.js"
+    "nuxt-payload-xray": "dist/cli.js"
   },
   "exports": {
     ".": {
