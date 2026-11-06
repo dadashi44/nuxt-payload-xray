@@ -7,6 +7,8 @@ export type PageResult =
   | ({
     ok: true
     target: string
+    /** HTTP status of the page; absent for local files. */
+    httpStatus?: number
     htmlBytes: number
     htmlGzipBytes: number
     status: Status
@@ -14,7 +16,12 @@ export type PageResult =
   | { ok: false, target: string, reason: string }
 
 /** Everything about one page's payload, from its HTML. */
-export function analyzeHtml(target: string, html: string, thresholds: Thresholds = DEFAULT_THRESHOLDS): PageResult {
+export function analyzeHtml(
+  target: string,
+  html: string,
+  thresholds: Thresholds = DEFAULT_THRESHOLDS,
+  httpStatus?: number,
+): PageResult {
   const extracted = extractPayload(html)
   if (extracted.kind === 'nuxt2') return { ok: false, target, reason: 'Nuxt 2 page (window.__NUXT__) is not supported' }
   if (extracted.kind === 'none') return { ok: false, target, reason: 'No __NUXT_DATA__ found: not a server-rendered Nuxt 3+ page' }
@@ -29,6 +36,7 @@ export function analyzeHtml(target: string, html: string, thresholds: Thresholds
   return {
     ok: true,
     target,
+    httpStatus,
     htmlBytes: Buffer.byteLength(html),
     htmlGzipBytes: gzipSync(html).length,
     status: checkSize(report.bytes, thresholds),

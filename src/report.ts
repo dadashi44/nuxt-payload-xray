@@ -25,8 +25,11 @@ export function formatPage(result: PageResult, { top = 10 } = {}): string {
   if (!result.ok) return `\n${dim('–')} ${bold(result.target)}\n  ${dim(result.reason)}`
 
   const share = Math.round((100 * result.bytes) / result.htmlBytes)
+  // A 404 or 500 page has a small payload too: don't let it pass as a healthy one.
+  const httpError = result.httpStatus !== undefined && (result.httpStatus < 200 || result.httpStatus >= 300)
+  const icon = httpError ? red('!') : STATUS[result.status]
   const lines = [
-    `\n${STATUS[result.status]} ${bold(result.target)}`,
+    `\n${icon} ${bold(result.target)}${httpError ? ` ${red(`HTTP ${result.httpStatus}`)}` : ''}`,
     `  payload ${bold(formatBytes(result.bytes))} ${dim(`(gzip ${formatBytes(result.gzipBytes)})`)}`
     + ` · ${share}% of HTML ${dim(`(${formatBytes(result.htmlBytes)})`)}`,
   ]

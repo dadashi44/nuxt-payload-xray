@@ -52,7 +52,7 @@ async function main(): Promise<number> {
   for (const target of positionals) {
     try {
       const source = await loadSource(target, { timeout: Number(values.timeout) })
-      results.push(analyzeHtml(target, source.html, thresholds))
+      results.push(analyzeHtml(target, source.html, thresholds, source.status))
     } catch (error) {
       results.push({ ok: false, target, reason: (error as Error).message })
     }

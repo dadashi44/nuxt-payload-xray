@@ -101,3 +101,10 @@ describe('sizes', () => {
     expect(checkSize(600 * 1024)).toBe('error')
   })
 })
+
+describe('HTTP status', () => {
+  it('keeps the status of the page', () => {
+    const result = analyzeHtml('https://x.dev/missing', nuxtPage({ data: {} }), undefined, 404)
+    expect(result.ok && result.httpStatus).toBe(404)
+  })
+})
