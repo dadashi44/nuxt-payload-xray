@@ -5,7 +5,7 @@ name: Release
 #   git push --follow-tags
 #
 # Uses npm Trusted Publishing (OIDC): no NPM_TOKEN secret. The package must be
-# linked to this repository and workflow once on npmjs.com, see README.
+# linked to this repository and workflow once on npmjs.com (Trusted Publisher).
 
 on:
   push:
