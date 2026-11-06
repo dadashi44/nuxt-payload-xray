@@ -1,5 +1,7 @@
 # nuxt-payload-xray
 
+**English** · [Русский](./README.ru.md) · [简体中文](./README.zh-CN.md) · [Português (Brasil)](./README.pt-BR.md)
+
 See what's inside the Nuxt payload of any page: the size of every `useState`,
 `useAsyncData` and Pinia key, straight from the URL. No access to the code,
 no dev server.
