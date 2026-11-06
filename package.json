@@ -1,6 +1,6 @@
 {
   "name": "nuxt-payload-xray",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "See what's inside the Nuxt payload of any page: size of every useState, useAsyncData and Pinia key, straight from the URL.",
   "type": "module",
   "license": "MIT",
@@ -11,7 +11,18 @@
   },
   "homepage": "https://github.com/dadashi44/nuxt-payload-xray#readme",
   "bugs": "https://github.com/dadashi44/nuxt-payload-xray/issues",
-  "keywords": ["nuxt", "nuxt3", "nuxt4", "payload", "ssr", "performance", "devalue", "hydration", "web-performance", "cli"],
+  "keywords": [
+    "nuxt",
+    "nuxt3",
+    "nuxt4",
+    "payload",
+    "ssr",
+    "performance",
+    "devalue",
+    "hydration",
+    "web-performance",
+    "cli"
+  ],
   "bin": {
     "nuxt-payload-xray": "./dist/cli.js"
   },
@@ -21,7 +32,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "engines": {
     "node": ">=18.17"
   },
