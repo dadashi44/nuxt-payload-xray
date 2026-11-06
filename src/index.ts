@@ -1,0 +1,5 @@
+export { analyzeHtml, type PageResult } from './analyze'
+export { checkSize, DEFAULT_THRESHOLDS, parseSize, type Status, type Thresholds } from './core/check'
+export { extractPayload, type ExtractResult } from './core/extract'
+export { measurePayload, type PayloadItem, type PayloadReport } from './core/measure'
+export { loadSource, type Source } from './sources'
