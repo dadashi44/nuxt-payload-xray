@@ -1,0 +1,31 @@
+name: Smoke test on nuxt.com
+
+# The tool reads Nuxt's internal payload format (__NUXT_DATA__ + devalue).
+# nuxt.com runs the latest Nuxt, so if a release changes the format, this
+# weekly run fails before users notice.
+
+on:
+  schedule:
+    - cron: '0 6 * * 1' # Mondays 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Parse nuxt.com
+        run: |
+          node dist/cli.js https://nuxt.com --json --max 10mb > result.json
+          node -e '
+            const [r] = require("./result.json")
+            if (!r.ok) throw new Error(`Could not analyze nuxt.com: ${r.reason}`)
+            if (r.items.length < 3 || r.bytes < 1024) throw new Error(`Suspicious result: ${r.items.length} keys, ${r.bytes} bytes`)
+            console.log(`ok: ${r.items.length} keys, ${r.bytes} bytes, top: ${r.items[0].section}: ${r.items[0].key}`)
+          '
