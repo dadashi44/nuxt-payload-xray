@@ -7,6 +7,18 @@ updates:
     groups:
       dev-dependencies:
         dependency-type: development
+        update-types: [minor, patch]
+    ignore:
+      # The package supports Node 18+. These majors need Node 22+ or drop the
+      # TypeScript compiler API that tsup uses for .d.ts files.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major]
+      - dependency-name: tsup
+        update-types: [version-update:semver-major]
+      - dependency-name: vitest
+        update-types: [version-update:semver-major]
+      - dependency-name: '@types/node'
+        update-types: [version-update:semver-major]
   - package-ecosystem: github-actions
     directory: /
     schedule:
