@@ -1,0 +1,49 @@
+<!doctype html>
+<!-- Social preview (1280×640). Regenerate:
+     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless --hide-scrollbars \
+       --window-size=1280,640 --screenshot=.github/assets/social-preview.png .github/assets/social-preview.html -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    width: 1280px; height: 640px; overflow: hidden;
+    background: radial-gradient(circle at 85% 15%, #1f3d36 0%, #11111b 55%);
+    color: #cdd6f4; font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    padding: 72px 80px; display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .name { font: 700 64px/1 Menlo, ui-monospace, monospace; color: #fff; letter-spacing: -1px; }
+  .name span { color: #00dc82; }
+  .tagline { margin-top: 20px; font-size: 30px; color: #a6adc8; max-width: 980px; line-height: 1.35; }
+  .term {
+    background: #1e1e2e; border: 1px solid #313244; border-radius: 14px; padding: 22px 28px;
+    font: 22px/1.55 Menlo, ui-monospace, monospace; width: 900px;
+    box-shadow: 0 20px 60px rgba(0,0,0,.45);
+  }
+  .muted { color: #6c7086; }
+  .warn { color: #f9e2af; }
+  .row { display: flex; gap: 18px; white-space: pre; }
+  .key { width: 330px; }
+  .size { width: 110px; text-align: right; }
+  .bar { height: 18px; align-self: center; background: #94e2d5; border-radius: 3px; }
+  .footer { display: flex; justify-content: space-between; align-items: end; }
+  .cmd { color: #a6e3a1; margin-bottom: 6px; }
+</style>
+</head>
+<body>
+  <div>
+    <div class="name">nuxt-payload-<span>xray</span></div>
+    <div class="tagline">What's inside the Nuxt payload of any page — size of every useState, useAsyncData and Pinia key, straight from the URL.</div>
+  </div>
+  <div class="footer">
+    <div class="term">
+      <div class="cmd">$ npx nuxt-payload-xray &lt;url&gt;</div>
+      <div><span class="warn">⚠</span> payload <b>196.6 KB</b> <span class="muted">· 36% of HTML</span></div>
+      <div class="row"><span class="muted">├─</span><span class="key">data: navigation</span><span class="size">77.7 KB</span><span class="bar" style="width:220px"></span></div>
+      <div class="row"><span class="muted">├─</span><span class="key">data: index</span><span class="size">49.6 KB</span><span class="bar" style="width:140px"></span></div>
+      <div class="row"><span class="muted">└─</span><span class="key">data: official-modules</span><span class="size">40.4 KB</span><span class="bar" style="width:114px"></span></div>
+    </div>
+  </div>
+</body>
+</html>
