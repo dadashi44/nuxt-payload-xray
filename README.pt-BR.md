@@ -2,9 +2,13 @@
 
 [English](./README.md) · [Русский](./README.ru.md) · [简体中文](./README.zh-CN.md) · **Português (Brasil)**
 
+[![npm](https://img.shields.io/npm/v/nuxt-payload-xray)](https://www.npmjs.com/package/nuxt-payload-xray) [![CI](https://github.com/dadashi44/nuxt-payload-xray/actions/workflows/ci.yml/badge.svg)](https://github.com/dadashi44/nuxt-payload-xray/actions/workflows/ci.yml) [![license](https://img.shields.io/npm/l/nuxt-payload-xray)](./LICENSE)
+
 Veja o que tem dentro do payload do Nuxt em qualquer página: o tamanho de cada
 chave de `useState`, `useAsyncData` e Pinia, direto pela URL. Sem acesso ao
 código e sem servidor de desenvolvimento.
+
+![nuxt-payload-xray demo](./.github/assets/demo.gif)
 
 ```bash
 npx nuxt-payload-xray https://nuxt.com

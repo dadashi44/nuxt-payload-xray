@@ -2,8 +2,12 @@
 
 [English](./README.md) · [Русский](./README.ru.md) · **简体中文** · [Português (Brasil)](./README.pt-BR.md)
 
+[![npm](https://img.shields.io/npm/v/nuxt-payload-xray)](https://www.npmjs.com/package/nuxt-payload-xray) [![CI](https://github.com/dadashi44/nuxt-payload-xray/actions/workflows/ci.yml/badge.svg)](https://github.com/dadashi44/nuxt-payload-xray/actions/workflows/ci.yml) [![license](https://img.shields.io/npm/l/nuxt-payload-xray)](./LICENSE)
+
 查看任意页面的 Nuxt payload 里装了什么：直接通过 URL 显示每个 `useState`、
 `useAsyncData` 和 Pinia 键的大小。无需访问源码，也无需开发服务器。
+
+![nuxt-payload-xray demo](./.github/assets/demo.gif)
 
 ```bash
 npx nuxt-payload-xray https://nuxt.com
