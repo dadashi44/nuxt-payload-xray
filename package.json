@@ -1,0 +1,41 @@
+{
+  "name": "nuxt-payload-xray",
+  "version": "0.1.0",
+  "description": "See what's inside the Nuxt payload of any page: size of every useState, useAsyncData and Pinia key, straight from the URL.",
+  "type": "module",
+  "license": "MIT",
+  "author": "dadashi44",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dadashi44/nuxt-payload-xray.git"
+  },
+  "homepage": "https://github.com/dadashi44/nuxt-payload-xray#readme",
+  "bugs": "https://github.com/dadashi44/nuxt-payload-xray/issues",
+  "keywords": ["nuxt", "nuxt3", "nuxt4", "payload", "ssr", "performance", "devalue", "hydration", "web-performance", "cli"],
+  "bin": {
+    "nuxt-payload-xray": "./dist/cli.js"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run typecheck && npm test && npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.0",
+    "devalue": "^5.0.0",
+    "tsup": "^8.0.0",
+    "typescript": "~5.9.3",
+    "vitest": "^3.2.0"
+  }
+}
