@@ -1,0 +1,35 @@
+name: GitHub Packages
+
+# Mirrors the release to GitHub Packages as @dadashi44/nuxt-payload-xray.
+# npm (unscoped nuxt-payload-xray) stays the main registry: installing from
+# GitHub Packages needs a GitHub token even for public packages.
+#
+# Runs after every npm release (called from release.yml) or by hand from the
+# Actions tab for the current version.
+
+on:
+  workflow_call:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          registry-url: https://npm.pkg.github.com
+          scope: '@dadashi44'
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      # GitHub Packages only accepts packages scoped to the repository owner.
+      - run: npm pkg set name=@dadashi44/nuxt-payload-xray
+      - run: npm publish --ignore-scripts
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
