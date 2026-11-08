@@ -20,10 +20,22 @@ export interface PayloadReport {
 /** Sections whose keys are reported one by one. */
 const GROUPS = new Set(['data', 'state', 'pinia'])
 
+/**
+ * Size of one entry as devalue wrote it. `JSON.parse` decodes the escapes
+ * devalue adds for embedding in a `<script>` (`<` as `\u003C`, U+2028, U+2029)
+ * and `JSON.stringify` doesn't put them back, so re-add them: otherwise every
+ * `<` in HTML content would lose 5 bytes.
+ */
+function entrySize(entry: unknown): number {
+  const json = JSON.stringify(entry ?? null)
+    .replace(/[<\u2028\u2029]/g, (char) => `\\u${char.charCodeAt(0).toString(16).toUpperCase().padStart(4, '0')}`)
+  return Buffer.byteLength(json)
+}
+
 function sizeOf(payload: DevalueArray, indexes: Set<number>): number {
   let bytes = 0
   // +1 for the comma that separates entries in the serialized array.
-  for (const index of indexes) bytes += Buffer.byteLength(JSON.stringify(payload[index] ?? null)) + 1
+  for (const index of indexes) bytes += entrySize(payload[index]) + 1
   return bytes
 }
 

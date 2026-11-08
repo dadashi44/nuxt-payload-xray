@@ -55,7 +55,8 @@ export function reachable(payload: DevalueArray, start: number): Set<number> {
     const index = stack.pop()!
     if (seen.has(index) || index >= payload.length) continue
     seen.add(index)
-    stack.push(...references(payload[index]))
+    // No spread: a large array would exceed V8's argument limit.
+    for (const reference of references(payload[index])) stack.push(reference)
   }
   return seen
 }

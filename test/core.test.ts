@@ -108,3 +108,20 @@ describe('HTTP status', () => {
     expect(result.ok && result.httpStatus).toBe(404)
   })
 })
+
+describe('regressions', () => {
+  it('counts characters devalue escapes for <script> as they are written', () => {
+    // devalue writes every `<` as `<`: 6 bytes, not 1. Same text with and
+    // without `<`: the key must grow exactly as much as the payload does.
+    const measure = (text: string) => measurePayload(nuxtPayload({ data: { html: text } }))
+    const keySize = (r: ReturnType<typeof measurePayload>) => r.items.find((i) => i.key === 'html')!.bytes
+    const withTags = measure('<p>bold</p>'.repeat(200))
+    const plain = measure('[p]bold[/p]'.repeat(200))
+    expect(keySize(withTags) - keySize(plain)).toBe(withTags.bytes - plain.bytes)
+  })
+
+  it('handles a very large array without exceeding the argument limit', () => {
+    const raw = nuxtPayload({ data: { big: Array.from({ length: 200_000 }, (_, i) => i) } })
+    expect(() => measurePayload(raw)).not.toThrow()
+  })
+})
